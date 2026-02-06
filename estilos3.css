@@ -1,0 +1,53 @@
+#gallery{
+	display: grid;
+	grid-template-columna: repeat(auto.fill, mimax(130px, fr));
+	gap:13px;
+	margin-top: 15px;
+}
+
+#gallery img{
+	width: 100%;
+	height: 130px;
+	object-fit: cover;
+	border-radius: 12px;
+	cursor:ponter;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#gallery img:hover{
+	transform: scale(1.5);
+	box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+/*ESTILOS PARA EL EFECTO MODAL*/
+.gallery-modal{
+	position: fixed;
+	inset:0;
+	background-color:rgba(0,0,0,0.85);
+	display: fixed;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease;
+	z-index: 50;
+}
+
+.gallery-modal.active{
+	opacity: 1;
+	visibility: visible;
+}
+
+.gallery-modal img{
+	max-width: 90s;
+	max-width: 80;
+	border-radius: 35px;
+}
+
+.close-modal{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	font-size: 25px;
+	color: red;
+	
+}

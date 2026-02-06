@@ -1,0 +1,121 @@
+/* ============================
+   CONTENEDOR APP
+   ============================ */
+
+.app-container {
+    width: 100%;
+    max-width: 360px;
+    height: 90vh;
+    background-color: #ffffff;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    position: relative;
+}
+
+/* ============================
+   HEADER
+   ============================ */
+
+.app-header {
+    background: linear-gradient(135deg, #5f6cff, #7b82ff);
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    z-index: 5;
+}
+
+.app-header h1{
+   font-size: 18px;
+}
+
+/* BOTON MENU */
+.menu-btn{
+   font-size: 22px;
+   cursor: pointer;
+}
+
+/* ============================
+   HEADER
+   ============================ */
+.floating-menu{
+   position: absolute;
+   top: 56px;
+   left: 0;
+   width: 100%;
+   background-color: #ffffff;
+   border-radius: 0 0 18px 18px;
+   box-shadow:0 12px 25px rgb(0,0,0, 0.25);
+   transform: translateY(-15px);
+   opacity: 0;
+   pointer-events: none;
+   transition: all 0.3s ease;
+   z-index: 10;
+}
+
+/* MENU VISIBLE */
+.floating-menu.active {
+   transform: translate(Y);
+   opacity: 1;
+   pointer-events: auto;
+}
+/* OPCIONES */
+.floating-menu a {
+display: block;
+   padding: 15px 20px;
+   text-decoration: none;
+   color: #333;
+   font-size: 15px;
+   border-bottom; 1px-solid #f0f0f0;
+}
+
+.floating-menu a:last-child {
+   border-bottom: none;
+}
+
+.floating-menu a:hover {
+   background-color: #f1f3ff;
+}
+
+/* ==========================
+   CONTENIDO
+   ========================== */
+
+.app-content {
+    padding: 20px;
+    overflow-y: auto;
+    height: calc(100% - 50px);
+}
+
+.app-content h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.app-content p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* ==========================
+   OVERLAY
+   ========================== */
+.overlay {
+   position: fixed;
+   inset: 0;
+   background-color: rgba(0,0,0,0.3);
+   opacity: 0;
+   visibility: hidden;
+   transition: opacity 0.3s ease;
+   z-index: 8;   
+}
+
+.overlay.active {
+   opacity: 1;
+   visibility: visible;
+}

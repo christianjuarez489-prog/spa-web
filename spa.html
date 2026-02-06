@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spa</title>
+
+<link rel="stylesheet" href="estilos.css">
+<link rel="stylesheet" href="estilos2.css">
+<link rel="stylesheet" href="estilos3.css">
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+}
+
+/* CONTENEDOR */
+.app-container{
+    min-height:100vh;
+}
+
+/* HEADER */
+.app-header{
+    background:#7e57c2;
+    color:white;
+    padding:10px;
+    display:flex;
+    align-items:center;
+    position:relative;
+}
+
+.menu-btn{
+    font-size:22px;
+    cursor:pointer;
+    margin-right:10px;
+}
+
+/* MENU DESPLEGABLE */
+.floating-menu{
+    position:absolute;
+    top:50px;
+    left:10px;
+    width:200px;
+    background:#5e35b1;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,0.3);
+    display:none;
+    z-index:10;
+}
+
+.floating-menu a{
+    display:block;
+    color:white;
+    padding:12px;
+    text-decoration:none;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.floating-menu a:hover{
+    background:#4527a0;
+}
+
+.floating-menu.active{
+    display:block;
+}
+
+/* CONTENIDO */
+.app-content{
+    padding:15px;
+}
+
+/* LOGIN */
+.login-box{
+    max-width:350px;
+    margin:50px auto;
+    text-align:center;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+.login-box input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+}
+
+.login-box button{
+    width:100%;
+    padding:10px;
+    background:#7e57c2;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+
+.servicios{
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    gap:15px;
+    margin-top:20px;
+}
+
+.servicio{
+    background:#fff;
+    border-radius:15px;
+    padding:10px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+    transition:transform 0.3s;
+}
+
+.servicio:hover{
+    transform:scale(1.05);
+}
+
+.servicio img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.servicio h3{
+    margin-top:10px;
+    font-size:17px;
+    color:#333;
+}
+
+/* GALERIA */
+#gallery{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+#gallery img{
+    width:100%;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* MODAL */
+.gallery-modal{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:20;
+}
+
+.gallery-modal.active{
+    display:flex;
+}
+
+.gallery-modal img{
+    max-width:90%;
+    max-height:90%;
+}
+
+.close-modal{
+    position:absolute;
+    top:20px;
+    right:20px;
+    color:white;
+    font-size:25px;
+    cursor:pointer;
+}
+
+/* CONTACTO */
+.contacto-box input,
+.contacto-box textarea{
+    width:100%;
+    padding:8px;
+    margin:6px 0;
+}
+
+.contacto-box button{
+    padding:10px;
+    width:48%;
+    border:none;
+    cursor:pointer;
+}
+
+.enviar{background:#4CAF50;color:white;}
+.limpiar{background:#f44336;color:white;}
+
+.mapa{
+    width:100%;
+    height:250px;
+    margin-top:10px;
+    border-radius:10px;
+    overflow:hidden;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app-container">
+
+<header class="app-header">
+    <span class="menu-btn" onclick="toggleMenu()">☰</span>
+    <h1>Spa</h1>
+
+    <nav class="floating-menu" id="menu">
+        <a href="#" onclick="mostrar('login')">Iniciar Sesión</a>
+        <a href="#" onclick="mostrar('inicio')">Inicio</a>
+        <a href="#" onclick="mostrar('galeria')">Galería</a>
+        <a href="#" onclick="mostrar('contacto')">Contáctanos</a>
+    </nav>
+</header>
+
+<main class="app-content">
+
+<!-- LOGIN -->
+<div id="login" class="login-box">
+    <h2>Inicio de Sesión</h2>
+    <input type="text" placeholder="Usuario">
+    <input type="password" placeholder="Contraseña">
+    <button onclick="login()">Entrar</button>
+</div>
+
+<!-- INICIO -->
+<div id="inicio" style="display:none;">
+    <h2>Bienvenido a Spa Yonca</h2>
+    <p>
+        Spa Yonca es un espacio dedicado al bienestar, la armonía y la relajación total.
+        Ofrecemos masajes terapéuticos, faciales, aromaterapia, spa de pies y tratamientos corporales.
+    </p>
+
+    <div class="servicios">
+        <div class="servicio">
+            <img src="masajes.jpg">
+            <h3>🌿 Masajes relajantes</h3>
+        </div>
+
+        <div class="servicio">
+            <img src="faciales.jpg">
+            <h3>💆‍♀️ Faciales</h3>
+        </div>
+
+        <div class="servicio">
+            <img src="spacorporal.jpg">
+            <h3>🧖‍♂️ Spa corporal</h3>
+        </div>
+
+        <div class="servicio">
+            <img src="aromaterapia.jpg">
+            <h3>🕯 Aromaterapia</h3>
+        </div>
+    </div>
+</div>
+
+<!-- GALERIA -->
+<div id="galeria" style="display:none;">
+    <h2>Galería</h2>
+    <div id="gallery">
+        <img src="spa1.jpg">
+        <img src="spa2.jpg">
+        <img src="spa3.jpg">
+        <img src="spa4.jpg">
+    </div>
+</div>
+
+<!-- CONTACTO -->
+<div id="contacto" style="display:none;">
+    <h2>Contáctanos</h2>
+
+    <div class="contacto-box">
+        <input type="text" id="nombre" placeholder="Nombre">
+        <input type="email" id="correo" placeholder="Correo">
+        <input type="tel" id="telefono" placeholder="Teléfono">
+        <textarea id="dudas" placeholder="Escribe tus dudas"></textarea>
+
+        <div>
+            <button class="enviar" onclick="enviarFormulario()">Enviar</button>
+            <button class="limpiar" onclick="limpiarFormulario()">Limpiar</button>
+        </div>
+    </div>
+
+    <h3>📍 Ubicación</h3>
+    <p><strong>Spa Analco Puebla</strong></p>
+    <p>Av. Don Juan de Palafox y Mendoza 1201</p>
+    <p>Barrio de Analco, 72500</p>
+    <p>Heroica Puebla de Zaragoza, Pue., México</p>
+
+    <div class="mapa">
+        <iframe 
+            src="https://www.google.com/maps?q=Av.+Don+Juan+de+Palafox+y+Mendoza+1201+Barrio+de+Analco+Puebla+México&output=embed"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
+    </div>
+</div>
+
+</main>
+</div>
+
+<!-- MODAL GALERIA -->
+<div id="galleryModal" class="gallery-modal">
+    <span class="close-modal" onclick="closeModal()">X</span>
+    <img id="modalImage">
+</div>
+
+<script>
+function toggleMenu(){
+    document.getElementById("menu").classList.toggle("active");
+}
+
+function mostrar(id){
+    ["login","inicio","galeria","contacto"].forEach(sec=>{
+        document.getElementById(sec).style.display="none";
+    });
+    document.getElementById(id).style.display="block";
+    document.getElementById("menu").classList.remove("active");
+}
+
+function login(){
+    mostrar("inicio");
+}
+
+/* GALERIA MODAL */
+const modal=document.getElementById("galleryModal");
+const modalImagen=document.getElementById("modalImage");
+
+document.querySelectorAll("#gallery img").forEach(img=>{
+    img.addEventListener("click",()=>{
+        modalImagen.src=img.src;
+        modal.classList.add("active");
+    });
+});
+
+function closeModal(){
+    modal.classList.remove("active");
+}
+
+/* FORMULARIO */
+function limpiarFormulario(){
+    document.getElementById("nombre").value="";
+    document.getElementById("correo").value="";
+    document.getElementById("telefono").value="";
+    document.getElementById("dudas").value="";
+}
+
+function enviarFormulario(){
+    alert("Mensaje enviado correctamente 💆‍♀️");
+    limpiarFormulario();
+}
+</script>
+
+</body>
+</html>
